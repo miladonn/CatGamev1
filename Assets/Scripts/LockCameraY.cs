@@ -1,0 +1,20 @@
+using Unity.Cinemachine;
+using UnityEngine;
+
+public class LockCameraY : CinemachineExtension
+{
+
+    public float m_YPosition = 10;
+
+    protected override void PostPipelineStageCallback(
+        CinemachineVirtualCameraBase vcam,
+        CinemachineCore.Stage stage, ref CameraState state, float deltaTime)
+    {
+        if (stage == CinemachineCore.Stage.Finalize)
+        {
+            var pos = state.RawPosition;
+            pos.y = m_YPosition;
+            state.RawPosition = pos;
+        }
+    }
+}
